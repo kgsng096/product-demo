@@ -47,7 +47,7 @@ const Products = () => {
     };
 
     fetchData();
-    // fetchRate();
+    fetchRate();
   }, [getProductList]);
 
   return (
@@ -56,8 +56,7 @@ const Products = () => {
       <ProductsGrid
         isLoading={isLoading}
         data={filterLists}
-        // rate={rate?.rates[CURRENCY]}
-        rate={57}
+        rate={rate?.rates[CURRENCY]}
         isModalOpen={isModalOpen}
         showModal={showModal}
         record={record}
