@@ -37,17 +37,13 @@ const Products = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setProductLists(await getProductList);
-      setFilterLists(await getProductList);
-      setIsLoading(false);
-    };
-
-    const fetchRate = async () => {
-      setRate(await getExchangeRate());
+      await setRate(await getExchangeRate());
+      await setProductLists(await getProductList);
+      await setFilterLists(await getProductList);
+      await setIsLoading(false);
     };
 
     fetchData();
-    fetchRate();
   }, [getProductList]);
 
   return (
@@ -56,7 +52,7 @@ const Products = () => {
       <ProductsGrid
         isLoading={isLoading}
         data={filterLists}
-        rate={rate?.rates[CURRENCY]}
+        rate={rate?.rates?.[CURRENCY]}
         isModalOpen={isModalOpen}
         showModal={showModal}
         record={record}

@@ -1,4 +1,4 @@
-import { Card, Flex, Spin } from "antd";
+import { Card, Flex } from "antd";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import "react-lazy-load-image-component/src/effects/blur.css";

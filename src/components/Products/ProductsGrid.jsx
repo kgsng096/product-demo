@@ -49,7 +49,7 @@ const ProductsGrid = ({
       title: "Price",
       dataIndex: "price",
       key: "price",
-      render: (record) => ` ${"\u20B1"} ${(record * rate).toFixed(2)}`,
+      render: (record) => `${"\u20B1"} ${(record * rate).toFixed(2)}`,
       align: "center",
       width: "10%",
     },
