@@ -4,6 +4,7 @@ import ProductsGrid from "./ProductsGrid";
 import { getProductList } from "../../controllers";
 import { getExchangeRate } from "../../controllers/rates.controller";
 import SearchBar from "../SearchBar/SearchBar";
+import ProductFallPage from "./ProductFallPage";
 
 const CURRENCY = "PHP";
 
@@ -19,7 +20,7 @@ const Products = () => {
   const filter = async (event) => {
     await setQueryLoading(true);
     await setFilterLists(
-      productLists?.products?.filter((product) =>
+      productLists?.filter((product) =>
         product.title.toLowerCase().includes(event.target.value)
       )
     );
@@ -37,7 +38,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await setRate(await getExchangeRate());
+      // await setRate(await getExchangeRate());
       await setProductLists(await getProductList);
       await setFilterLists(await getProductList);
       await setIsLoading(false);
@@ -49,16 +50,20 @@ const Products = () => {
   return (
     <>
       <SearchBar queryLoad={queryLoad} filter={filter} />
-      <ProductsGrid
-        isLoading={isLoading}
-        data={filterLists}
-        rate={rate?.rates?.[CURRENCY]}
-        isModalOpen={isModalOpen}
-        showModal={showModal}
-        record={record}
-        handleCancel={handleCancel}
-        setRecord={setRecord}
-      />
+      {productLists.length !== 0 && filterLists.length <= 0 ? (
+        <ProductFallPage />
+      ) : (
+        <ProductsGrid
+          isLoading={isLoading}
+          data={filterLists}
+          rate={rate?.rates?.[CURRENCY]}
+          isModalOpen={isModalOpen}
+          showModal={showModal}
+          record={record}
+          handleCancel={handleCancel}
+          setRecord={setRecord}
+        />
+      )}
     </>
   );
 };
