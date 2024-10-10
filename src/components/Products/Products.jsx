@@ -38,7 +38,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // await setRate(await getExchangeRate());
+      await setRate(await getExchangeRate());
       await setProductLists(await getProductList);
       await setFilterLists(await getProductList);
       await setIsLoading(false);
